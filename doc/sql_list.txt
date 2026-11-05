@@ -1,0 +1,706 @@
+-- ===========================
+-- 14-10-2026
+-- ===========================
+
+ALTER TABLE `products`
+ADD COLUMN `size_chart` INT NULL DEFAULT NULL
+AFTER `gallery_images`;
+
+
+CREATE TABLE `expense_bills` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `supplier_id` BIGINT UNSIGNED NOT NULL,
+    `category_id` BIGINT UNSIGNED NOT NULL,
+    `title` VARCHAR(255) NULL DEFAULT NULL,
+    `total_amount` DECIMAL(15,2) NOT NULL,
+    `paid_amount` DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+    `due_amount` DECIMAL(15,2) NOT NULL,
+    `bill_date` DATE NULL DEFAULT NULL,
+    `status` VARCHAR(255) NOT NULL DEFAULT 'Unpaid',
+    `note` TEXT NULL DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `expense_bills_supplier_id_index` (`supplier_id`),
+    KEY `expense_bills_category_id_index` (`category_id`)
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+
+
+ALTER TABLE `expense_bills`
+    DROP COLUMN `total_amount`,
+    DROP COLUMN `paid_amount`,
+    DROP COLUMN `due_amount`;
+
+ALTER TABLE `expense_bills`
+ADD COLUMN `amount` DECIMAL(15,2) NULL DEFAULT NULL AFTER `category_id`;
+
+ALTER TABLE `expense_bills`
+DROP COLUMN `bill_date`,
+DROP COLUMN `title`;
+
+ALTER TABLE `expense_bills`
+DROP COLUMN `status`;
+
+
+-- ===========================
+-- 14-10-2026
+-- ===========================
+
+ALTER TABLE `orders`
+ADD COLUMN `is_accounted` TINYINT(1) NOT NULL DEFAULT 0
+AFTER `payment_status`;
+
+ALTER TABLE `orders`
+ADD COLUMN `is_courier_detailed` TINYINT(1) NOT NULL DEFAULT 0;
+
+
+ALTER TABLE `suppliers`
+    ADD COLUMN `address` TEXT NULL AFTER `email`,
+    ADD COLUMN `type` TINYINT NOT NULL DEFAULT 1
+        COMMENT '1 = Product Supplier, 2 = Service Vendor / IT Firm'
+        AFTER `address`,
+    MODIFY COLUMN `balance` DECIMAL(15,2) NOT NULL DEFAULT 0.00
+        COMMENT 'Current due amount';
+
+
+
+-- ===========================
+-- 13-10-2026
+-- ===========================
+
+
+
+ALTER TABLE `orders`
+ADD COLUMN `c_delivery_charge` DECIMAL(10,2) NULL DEFAULT NULL AFTER `is_sent_to_courier`,
+ADD COLUMN `c_target_amount` DECIMAL(10,2) NULL DEFAULT NULL AFTER `c_delivery_charge`,
+ADD COLUMN `c_discount` DECIMAL(10,2) NULL DEFAULT NULL AFTER `c_target_amount`,
+ADD COLUMN `c_collected_amount` DECIMAL(10,2) NULL DEFAULT NULL AFTER `c_discount`,
+ADD COLUMN `c_paid_amount` DECIMAL(10,2) NULL DEFAULT NULL AFTER `c_collected_amount`,
+ADD COLUMN `cod_charge` DECIMAL(10,2) NULL DEFAULT NULL AFTER `c_paid_amount`,
+ADD COLUMN `total_delivery_fee` DECIMAL(10,2) NULL DEFAULT NULL AFTER `cod_charge`;
+
+
+
+
+
+
+-- ===========================
+-- 6-10-2026
+-- ===========================
+
+
+
+CREATE TABLE `order_combo_items` (
+    `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `order_product_id` BIGINT UNSIGNED NOT NULL,
+    `product_id` BIGINT UNSIGNED NOT NULL,
+    `sku` VARCHAR(255) NULL,
+    `qty` INT NOT NULL DEFAULT 1,
+    `variant_id` BIGINT UNSIGNED NULL,
+    `created_at` TIMESTAMP NULL,
+    `updated_at` TIMESTAMP NULL
+);
+
+
+CREATE TABLE `supplier_transactions` (
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `supplier_id` BIGINT(20) UNSIGNED NOT NULL,
+    `type` ENUM('payment', 'purchase') NOT NULL,
+    `amount` DECIMAL(10,4) NULL DEFAULT NULL,
+    `previous_balance` DECIMAL(10,4) NULL DEFAULT NULL,
+    `new_balance` DECIMAL(10,4) NULL DEFAULT NULL,
+    `notes` TEXT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+
+    PRIMARY KEY (`id`),
+    KEY `supplier_transactions_supplier_id_index` (`supplier_id`)
+
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+
+
+
+
+-- ===========================
+-- 29-09-2026
+-- ===========================
+
+
+ALTER TABLE `purchases`
+    MODIFY `supplier_id` BIGINT UNSIGNED NULL,
+    MODIFY `account_id` BIGINT UNSIGNED NULL,
+    MODIFY `status` ENUM('received', 'ordered') NOT NULL DEFAULT 'ordered',
+    ADD `tax` DECIMAL(15,2) NOT NULL DEFAULT 0 AFTER `discount`,
+    ADD `shipping_cost` DECIMAL(15,2) NOT NULL DEFAULT 0 AFTER `tax`,
+    ADD `created_by` BIGINT UNSIGNED NULL AFTER `note`;
+
+ALTER TABLE `purchase_items`
+    CHANGE `product_quantity` `ordered_quantity` DECIMAL(12,2) NOT NULL,
+    ADD `received_quantity` DECIMAL(12,2) NOT NULL DEFAULT 0 AFTER `ordered_quantity`,
+    ADD `stock_quantity` DECIMAL(12,2) NOT NULL DEFAULT 0 AFTER `received_quantity`;
+
+    ALTER TABLE `purchase_items`
+    MODIFY `purchase_cost` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `total` DECIMAL(12,2) NOT NULL DEFAULT 0.00;
+
+
+ALTER TABLE `purchases`
+    MODIFY `subtotal` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `discount` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `tax` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `shipping_cost` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `total` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `paid_amount` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `previous_due` DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    MODIFY `due_amount` DECIMAL(12,2) NOT NULL DEFAULT 0.00;
+
+ALTER TABLE `purchase_items`
+    MODIFY `ordered_quantity` INT UNSIGNED NOT NULL,
+    MODIFY `received_quantity` INT UNSIGNED NOT NULL DEFAULT 0,
+    MODIFY `stock_quantity` INT UNSIGNED NOT NULL DEFAULT 0;
+
+
+ALTER TABLE `purchases`
+MODIFY `status` ENUM('ordered', 'partial', 'received')
+NOT NULL DEFAULT 'ordered';
+
+ALTER TABLE `purchase_items`
+ADD COLUMN `sale_priority` INT NOT NULL DEFAULT 0 AFTER `stock_quantity`;
+
+
+CREATE TABLE `stock_adjustments` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `adjustment_date` DATE NOT NULL,
+    `reason` VARCHAR(255) NULL,
+    `note` TEXT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE `stock_adjustment_items` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `stock_adjustment_id` BIGINT UNSIGNED NOT NULL,
+    `product_id` BIGINT UNSIGNED NOT NULL,
+    `sku` VARCHAR(255) NULL,
+    `current_stock` INT NOT NULL,
+    `adjusted_quantity` INT NOT NULL,
+    `type` ENUM('addition', 'subtraction') NOT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `stock_adjustment_items_stock_adjustment_id_index` (`stock_adjustment_id`),
+    KEY `stock_adjustment_items_product_id_index` (`product_id`),
+    CONSTRAINT `stock_adjustment_items_stock_adjustment_id_foreign`
+        FOREIGN KEY (`stock_adjustment_id`)
+        REFERENCES `stock_adjustments` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+
+
+
+-- ===========================
+-- 11-09-2026
+-- ===========================
+ALTER TABLE `web_settings`
+ADD `whatsapp_number` VARCHAR(255) NULL DEFAULT NULL AFTER `website_email2`,
+ADD `messenger_url` TEXT NULL DEFAULT NULL AFTER `whatsapp_number`;
+
+============== 09-03-2026 ================
+
+ALTER TABLE `banner_sections` ADD `height` INT NULL DEFAULT NULL AFTER `max_items`, ADD `width` INT NULL DEFAULT NULL AFTER `height`;
+
+
+============== 28-02-2026 ================
+
+CREATE TABLE `carry_bee_cities` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `parent_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+ALTER TABLE `carry_bee_cities`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `carry_bee_cities`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+
+
+CREATE TABLE `carry_bee_zones` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `carry_bee_city_id` bigint(20) UNSIGNED NOT NULL,
+  `parent_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `carry_bee_zones`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `carry_bee_zones`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+============== 23-02-2026 ================
+CREATE TABLE `print_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `single_print` varchar(255) NOT NULL DEFAULT '0' COMMENT '0 = default',
+  `bulk_print` varchar(255) NOT NULL DEFAULT '0' COMMENT '0 = default',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+ALTER TABLE `print_settings`
+  ADD PRIMARY KEY (`id`);
+
+  ALTER TABLE `print_settings`
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `shetabit_visits` ADD `last_activity` TIMESTAMP NULL DEFAULT NULL AFTER `duration`;
+
+
+============== 10-02-2026 ================
+ALTER TABLE `orders` CHANGE `payment_status` `payment_status` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '1= paid, 0= unpaid';
+
+============== 10-02-2026 ================
+
+CREATE TABLE `home_page_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `theme_id` int(11) DEFAULT NULL,
+  `section` varchar(255) DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`content`)),
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `home_page_settings`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `home_page_settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+============== 01-02-2026 ================
+ALTER TABLE `admins` ADD `theme_id` TINYINT NULL DEFAULT NULL AFTER id ;
+ALTER TABLE `web_settings` ADD `is_demo` TINYINT NOT NULL DEFAULT '0' AFTER `invoice_prefix`;
+
+
+============== 27-01-2025 ================
+ALTER TABLE `orders` ADD `theme_id` INT NULL DEFAULT NULL AFTER `order_date`;
+ALTER TABLE `abandoned_carts` ADD `theme_id` INT NULL DEFAULT NULL AFTER `id`;
+ALTER TABLE `products` ADD `free_shipping` BOOLEAN NULL DEFAULT FALSE AFTER `is_package`;
+
+
+
+============== 05-01-2025 ================
+ALTER TABLE `sliders` ADD `theme_id` INT NULL DEFAULT NULL AFTER `id`;
+
+
+
+============== 05-01-2025 ================
+ALTER TABLE `purchase_items` ADD `regular_price` DECIMAL(10,2) NOT NULL DEFAULT '0' AFTER `purchase_cost`;
+
+============== 20-12-2025 ================
+CREATE TABLE `conversion_apis` (
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `data` JSON DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+============== 17-12-2025 ================
+
+ALTER TABLE `order_products` ADD `purchase_price` DECIMAL(10,2) NULL DEFAULT '0' AFTER `qty`;
+
+
+============== 10-12-2025 ================
+
+ALTER TABLE `orders` ADD `coupon_code` VARCHAR(255) NULL DEFAULT NULL AFTER `courier_zone_id`, ADD `coupon_discount` DECIMAL(10,2) NULL DEFAULT '0' AFTER `coupon_code`, ADD `coupon_applied_on` VARCHAR(255) NULL DEFAULT NULL AFTER `coupon_discount`;
+
+ALTER TABLE `order_products` ADD `discount` DECIMAL(10,2) NOT NULL DEFAULT '0' AFTER `price`;
+
+
+============== 09-12-2025 ================
+
+
+CREATE TABLE `coupons` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `type` enum('fixed','percentage') NOT NULL DEFAULT 'fixed',
+  `amount` decimal(10,2) NOT NULL,
+  `max_discount` decimal(10,2) DEFAULT NULL,
+  `min_purchase` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `apply_on` enum('cart','product','shipping','payment','first_time') NOT NULL DEFAULT 'cart',
+  `product_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`product_ids`)),
+  `payment_method` varchar(255) DEFAULT NULL,
+  `usage_limit` int(11) DEFAULT NULL,
+  `used_count` int(11) NOT NULL DEFAULT 0,
+  `per_user_limit` int(11) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `coupons_code_unique` (`code`);
+
+
+ALTER TABLE `coupons`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+
+CREATE TABLE `coupon_users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `coupon_id` bigint(20) UNSIGNED NOT NULL,
+  `used_count` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `coupon_users`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `coupon_users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+
+
+
+
+
+============== 02-12-2025 ================
+ALTER TABLE `categories` ADD `extra_fields` TEXT NULL DEFAULT NULL AFTER `status`;
+ALTER TABLE `page_settings` ADD `how_to_order` LONGTEXT NULL DEFAULT NULL AFTER `return_policy`, ADD `privacy_policy` LONGTEXT NULL DEFAULT NULL AFTER `how_to_order`, ADD `terms_condition` LONGTEXT NULL DEFAULT NULL AFTER `privacy_policy`, ADD `why_us` LONGTEXT NULL DEFAULT NULL AFTER `terms_condition`;
+ALTER TABLE `page_settings` ADD `contact_us` LONGTEXT NULL DEFAULT NULL AFTER `why_us`;
+
+============== 26-11-2025 ================
+
+ALTER TABLE `orders` ADD `courier_status` VARCHAR(255) NULL DEFAULT NULL AFTER `staff_note`, ADD `courier_reason_msg` VARCHAR(255) NULL DEFAULT NULL AFTER `courier_status`, ADD `courier_error_msg` JSON NULL DEFAULT NULL AFTER `courier_reason_msg`, ADD `consignment_id` VARCHAR(255) NULL DEFAULT NULL AFTER `courier_error_msg`, ADD `tracking_id` VARCHAR(255) NULL DEFAULT NULL AFTER `consignment_id`;
+
+ALTER TABLE `categories` ADD `theme_id` INT NULL DEFAULT NULL AFTER `parent_id`, ADD `position` INT NOT NULL DEFAULT '0' AFTER `theme_id`;
+
+
+
+
+
+============== 25-11-2025 ================
+CREATE TABLE landing_categories (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    status TINYINT(1) DEFAULT 1,       -- 1 = active, 0 = inactive
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL
+);
+
+
+CREATE TABLE landing_themes (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    category_id BIGINT UNSIGNED NOT NULL,
+    image VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL,
+
+    CONSTRAINT fk_theme_category
+        FOREIGN KEY (category_id) REFERENCES landing_categories(id)
+        ON DELETE CASCADE
+);
+
+
+CREATE TABLE landing_pages (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    content JSON NULL,
+    style JSON NULL,
+    theme_id BIGINT UNSIGNED NOT NULL,
+    product_ids JSON NULL,   -- store comma-separated product IDs or JSON array
+    status TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL,
+
+    CONSTRAINT fk_page_theme
+        FOREIGN KEY (theme_id) REFERENCES landing_themes(id)
+        ON DELETE CASCADE
+);
+
+
+============== 20-11-2025 ================
+ALTER TABLE `orders` ADD `device_id` VARCHAR(255) NULL DEFAULT NULL AFTER `ip_address`;
+
+
+CREATE TABLE `device_tracks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `device_id` varchar(255) DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `device_name` varchar(255) DEFAULT NULL,
+  `device_type` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `device_tracks`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `device_tracks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT
+
+
+
+
+============== 20-11-2025 ================
+ALTER TABLE `products` ADD `related_products` TEXT NULL DEFAULT NULL AFTER `extra_fields`;
+
+
+============== 17-11-2025 ================
+ALTER TABLE `categories` ADD `is_show_home` INT NULL DEFAULT '0' AFTER `file_url`;
+
+
+============== 16-11-2025 ================
+ALTER TABLE `orders` CHANGE `payment_method` `payment_method` VARCHAR(100) NULL DEFAULT NULL;
+
+============== 16-11-2025 ================
+ALTER TABLE `products` ADD `theme_id` INT NULL DEFAULT NULL AFTER `id`;
+
+
+
+
+
+===============   End     =================
+
+============== 15-11-2025 ================
+ALTER TABLE `categories` ADD `parent_id` INT NULL DEFAULT NULL AFTER `id`, ADD `slug` VARCHAR(100) NULL DEFAULT NULL AFTER `parent_id`;
+
+
+
+
+===============   End     =================
+
+============== 12-11-2025 ================
+ALTER TABLE `products` ADD `extra_fields` JSON NULL DEFAULT NULL AFTER `status`;
+
+
+===============   End     =================
+
+============== 30-10-2025 ================
+
+ALTER TABLE `products` ADD `is_combo` TINYINT NOT NULL DEFAULT '0' AFTER `has_variant`;
+ALTER TABLE `products` ADD `is_package` TINYINT NULL DEFAULT '0' AFTER `is_combo`;
+ALTER TABLE `products` ADD `package_qty` INT NULL DEFAULT NULL AFTER `stock`;
+ALTER TABLE `combo_products` ADD `quantity` INT NULL DEFAULT NULL AFTER `sale_price`;
+
+
+
+
+CREATE TABLE `combo_products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `combo_product_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `purchase_price` decimal(10,4) NOT NULL DEFAULT 0.0000,
+  `regular_price` decimal(10,4) NOT NULL DEFAULT 0.0000,
+  `sale_price` decimal(10,4) NOT NULL DEFAULT 0.0000,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `combo_products`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `combo_products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+
+===============   End     =================
+
+
+============== 29-10-2025 ================
+
+ALTER TABLE `web_settings` ADD `invoice_prefix` VARCHAR(20) NULL DEFAULT NULL AFTER `guest_review`;
+
+
+===============   End     =================
+
+
+
+
+============== 26-10-2025 ================
+
+ALTER TABLE `product_variants` ADD `variant` VARCHAR(100) NULL DEFAULT NULL AFTER `sku`;
+
+===============   End     =================
+
+
+
+
+============== 13-10-2025 ================
+
+ALTER TABLE `orders` ADD `customer_activity` JSON NULL DEFAULT NULL AFTER `memo_number`;
+
+===============   End     =================
+
+
+
+============== 07-10-2025 ================
+
+ALTER TABLE `purchases` CHANGE `memo_no` `memo_no` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+ALTER TABLE `purchases` CHANGE `remarks` `remarks` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+===============   End     =================
+
+
+
+============== 11-09-2025 ================
+
+ALTER TABLE `products` ADD `purchase_price` DECIMAL(10,4) NOT NULL DEFAULT '0' AFTER `stock`, ADD `regular_price` DECIMAL(10,4) NOT NULL DEFAULT '0' AFTER `purchase_price`, ADD `sale_price` DECIMAL(10,4) NOT NULL DEFAULT '0' AFTER `regular_price`;
+
+
+============== 09-09-2025 ================
+
+ALTER TABLE `variants` CHANGE `is_default` `is_image` TINYINT(4) NULL DEFAULT NULL;
+ALTER TABLE `product_attributes` CHANGE `price` `regular_price` DECIMAL(10,4) NOT NULL DEFAULT '0.0000';
+
+ALTER TABLE `product_attributes` ADD `sale_price` DOUBLE NULL DEFAULT NULL AFTER `regular_price`;
+
+ALTER TABLE `product_attributes` CHANGE `sale_price` `sale_price` DECIMAL(10,4) NULL DEFAULT '0';
+ALTER TABLE `order_products` ADD `product_sku` VARCHAR(255) NULL DEFAULT NULL AFTER `product_id`;
+
+
+
+============== 03-03-2025 ================
+
+ALTER TABLE `orders` ADD `paid` DECIMAL(10,4) NOT NULL DEFAULT '0' AFTER `total`, ADD `due` DECIMAL(10,4) NOT NULL DEFAULT '0' AFTER `paid`;
+
+
+============== 25-02-2025 ================
+
+ALTER TABLE `orders` ADD `ip_address` VARCHAR(255) NULL DEFAULT NULL AFTER `invoice_id`;
+ALTER TABLE `orders` ADD `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `updated_at`;
+
+
+
+============== 19-02-2025 ================
+
+ALTER TABLE `shetabit_visits` ADD `duration` INT NULL DEFAULT NULL AFTER `visitor_id`;
+
+
+===============   End     =================
+
+============== 12-02-2025 ================
+
+ALTER TABLE `web_settings` ADD `stock_alert` INT NULL DEFAULT NULL AFTER `stock_management`;
+
+===============   End     =================
+============== 09-02-2025 ================
+
+ALTER TABLE `web_settings` ADD `guest_review` TINYINT NULL DEFAULT NULL AFTER `stock_management`;
+
+===============   End     =================
+============== 08-02-2025 ================
+
+ALTER TABLE `orders` ADD `source` VARCHAR(255) NULL DEFAULT NULL AFTER `payment_status`;
+ALTER TABLE `products` ADD `purchase_price` DECIMAL(10,4) NOT NULL DEFAULT '0' AFTER `description`;
+ALTER TABLE `product_attributes` ADD `purchase_price` DECIMAL(10,4) NOT NULL DEFAULT '0' AFTER `variant`;
+
+
+===============   End     =================
+
+============== 01-01-2025 ================
+
+ALTER TABLE `products` ADD `free_shipping` TINYINT NULL DEFAULT NULL AFTER `has_variant`;
+
+===============   End     =================
+
+============== 30-01-2025 ================
+
+ALTER TABLE `web_settings` ADD `website_footer_logo` VARCHAR(255) NULL DEFAULT NULL AFTER `website_header_logo`;
+
+===============   End     =================
+
+
+============== 25-01-2025 ================
+
+ALTER TABLE `products` ADD `has_variant` TINYINT NOT NULL DEFAULT '0' AFTER `sale_price`, ADD `choice_attribute` TEXT NULL DEFAULT NULL AFTER `has_variant`;
+
+
+ALTER TABLE `web_settings` ADD `stock_management` TINYINT NULL DEFAULT NULL COMMENT '1= active, 0= inactive' AFTER `fb_pixel`;
+
+===============   End     =================
+
+============== 19-01-2025 ================
+
+ALTER TABLE `api_couriers` CHANGE `pathao_access_token` `pathao_access_token` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+ALTER TABLE `api_couriers` CHANGE `pathao_refresh_token` `pathao_refresh_token` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+
+
+===============   End     =================
+
+
+============== 19-01-2025 =================
+
+ALTER TABLE `orders` ADD `payment_status` TINYINT NULL DEFAULT NULL COMMENT '1= paid, 0= unpaid' AFTER `total`;
+
+
+===============   End     =================
+
+
+============== 16-01-2025 ================
+ALTER TABLE `orders` CHANGE `order_note` `customer_note` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+ALTER TABLE `orders` ADD `staff_note` VARCHAR(255) NULL DEFAULT NULL AFTER `customer_note`;
+
+===============   End     =================
+
+
+============== 12-01-2025 ================
+ALTER TABLE `categories` ADD `file_url` VARCHAR(255) NULL DEFAULT NULL AFTER `category_name`;
+
+===============   End     =================

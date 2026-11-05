@@ -1,0 +1,403 @@
+.menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.menu > li {
+    position: relative;
+}
+
+.menu > li > a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    /* padding: 18px 0; */
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu > li > a:hover {
+    color: #fff;
+}
+
+.menu > li > a > span {
+    color: #fff;
+}
+
+/* ===== SUBMENU BASE ===== */
+.submenu {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    background: #fff;
+    min-width: 220px;
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+/* Show dropdown */
+.menu li:hover > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ===== SUBMENU ITEMS ===== */
+.submenu li {
+    position: relative;
+}
+
+.submenu li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px 20px; */
+    color: #000000;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.submenu li a:hover {
+    background: #f8f9fa;
+    color: #ff6a00;
+    padding-left: 25px;
+}
+
+/* ===== 2nd LEVEL RIGHT SIDE ===== */
+.submenu .submenu {
+    top: 0;
+    left: 100%;
+    margin-left: 10px;
+}
+
+/* Arrow */
+.arrow {
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.menu li:hover > a .arrow {
+    transform: rotate(90deg);
+}
+
+/* ===== mobile ===== */
+
+.menu-m,
+.sub-menu-m {
+    list-style: none;
+    padding-left: 0;
+}
+
+.menu-m .menu-item-m {
+    position: relative;
+}
+
+.menu-m .sub-menu-m {
+    padding-left: 15px;
+    display: none;
+}
+
+.menu-m .menu-item-m > a {
+    display: block;
+    padding: 8px 0;
+}
+
+.menu-m .menu-item-m.open > .sub-menu-m {
+    display: block;
+}
+
+/* ===== offcanvas ===== */
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap");
+
+/* ── Design Tokens ── */
+:root {
+    --oc-bg: #ffffff;
+    --oc-header-bg: #fff;
+    --oc-header-txt: #ffffff;
+    --oc-accent: #04a96d;
+    --oc-accent-soft: #fff0ec;
+    --oc-border: #efefef;
+    --oc-txt: #1a1a1a;
+    --oc-txt-muted: #888;
+    --oc-hover-bg: #f8f8f8;
+    --oc-width: 320px;
+    --oc-radius: 0px;
+    --oc-font: "Sora", sans-serif;
+    --oc-transition: 0.38s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* ── Overlay ── */
+.category-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    z-index: 1039;
+    pointer-events: none;
+    transition:
+        background 0.38s ease,
+        backdrop-filter 0.38s ease;
+}
+
+.category-overlay.active {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    pointer-events: all;
+}
+
+/* ── Offcanvas Panel ── */
+.category-offcanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--oc-width);
+    height: 100dvh;
+    background: var(--oc-bg);
+    z-index: 546465;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--oc-font);
+    transform: translateX(calc(-1 * var(--oc-width)));
+    transition: transform var(--oc-transition);
+    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.category-offcanvas.active {
+    transform: translateX(0);
+}
+
+/* ── Header ── */
+.offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 22px;
+    background: var(--oc-header-bg);
+    flex-shrink: 0;
+}
+
+.offcanvas-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--oc-header-txt);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.offcanvas-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--oc-accent);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.category-close-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+    font-size: 16px;
+}
+
+.category-close-btn:hover {
+    background: var(--oc-accent);
+    transform: rotate(90deg);
+}
+
+/* ── Scrollable Body ── */
+.offcanvas-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 0 24px;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+}
+
+.offcanvas-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 4px;
+}
+
+/* ── Category List ── */
+.category-list,
+.sub-category-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Individual Item ── */
+.cat-item {
+    border-bottom: 1px solid var(--oc-border);
+}
+
+.cat-item:last-child {
+    border-bottom: none;
+}
+
+/* ── Row (link + toggle) ── */
+.cat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    min-height: 50px;
+    transition: background 0.15s;
+}
+
+.cat-row:hover {
+    background: var(--oc-hover-bg);
+}
+
+/* ── Link ── */
+.cat-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--oc-txt);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 0;
+    transition: color 0.15s;
+}
+
+.cat-link:hover {
+    color: var(--oc-accent);
+}
+
+/* ── Toggle Button ── */
+.cat-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--oc-border);
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    color: var(--oc-txt-muted);
+    flex-shrink: 0;
+    transition:
+        background 0.2s,
+        color 0.2s,
+        border-color 0.2s;
+}
+
+.cat-toggle:hover {
+    background: var(--oc-accent);
+    color: #fff;
+    border-color: var(--oc-accent);
+}
+
+/* Chevron rotation when open */
+.cat-toggle[aria-expanded="true"] {
+    background: var(--oc-accent-soft);
+    border-color: var(--oc-accent);
+    color: var(--oc-accent);
+}
+
+.cat-toggle[aria-expanded="true"] .chevron-icon {
+    transform: rotate(180deg);
+}
+
+.chevron-icon {
+    transition: transform 0.28s ease;
+}
+
+/* ── Sub-category List ── */
+.sub-category-list {
+    background: #fafafa;
+    border-top: 1px solid var(--oc-border);
+}
+
+.sub-category-list .cat-item {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sub-category-list .cat-item:last-child {
+    border-bottom: none;
+}
+
+.sub-category-list .cat-row {
+    padding-left: 36px;
+    /* Indent sub-items */
+}
+
+.sub-category-list .cat-link {
+    font-size: 13px;
+    font-weight: 400;
+    color: #555;
+}
+
+.sub-category-list .cat-link::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--oc-accent);
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.sub-category-list .cat-link:hover {
+    color: var(--oc-accent);
+}
+
+.sub-category-list .cat-link:hover::before {
+    opacity: 1;
+}
+
+/* Deeper nesting */
+.sub-category-list .sub-category-list .cat-row {
+    padding-left: 52px;
+}
+
+/* ── Mobile only ── */
+@media (min-width: 992px) {
+    .category-offcanvas,
+    .category-overlay {
+        display: none !important;
+    }
+}

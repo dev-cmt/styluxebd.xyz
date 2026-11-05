@@ -1,0 +1,102 @@
+.rs-box {
+    position: absolute;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    z-index: 9999;
+    margin-top: 10px;
+}
+
+.rs-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rs-item {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.rs-item a {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: #333;
+    padding: 8px;
+}
+
+.rs-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.rs-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rs-name {
+    font-weight: 600;
+}
+
+.rs-price {
+    color: #28a745;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+}
+
+.rs-searching,
+.rs-no-result,
+.rs-error {
+    padding: 10px;
+    text-align: center;
+    color: #999;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.header.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    animation: slideDown 0.3s ease;
+}
+
+/* Optional: scroll করলে shadow */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.header-bottom {
+    margin-top: 90px;
+}
+
+@media (max-width: 768px) {
+    .rs-box {
+        max-height: 200px;
+        margin-top: 100px;
+        top: -40px;
+        width: 95%;
+    }
+}

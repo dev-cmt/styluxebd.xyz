@@ -1,0 +1,259 @@
+/* Variant Section Wrapper */
+.variant-section {
+    display: inline-block;
+}
+
+.variant-group {
+    /* background: #f0f5ff; */
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #e4ebff;
+}
+
+/* Label */
+.variant-label {
+    font-size: 15px;
+    color: #333;
+}
+
+.variant-label .variant-name {
+    color: #04a96d;
+    font-weight: 600;
+}
+
+/* Items Container */
+.variant-items {
+    margin-top: 8px;
+}
+
+/* Base Variant Item */
+.variant-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Text Button Variant */
+.variant-item.text-btn {
+    background: #ffffff;
+    border: 2px solid #ddd;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Hover */
+.variant-item.text-btn:hover {
+    border-color: #04a96d;
+    color: #04a96d;
+}
+
+/* Active Text Variant */
+.variant-item.text-btn.active {
+    background: #04a96d;
+    border-color: #04a96d;
+    color: #fff;
+}
+
+/* Image Variant */
+.variant-item-image {
+    border: 2px solid transparent;
+    padding: 4px;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.variant-item-image img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Hover Image */
+.variant-item-image:hover {
+    border-color: #04a96d;
+}
+
+/* Active Image Variant */
+.variant-item-image.active {
+    border-color: #04a96d;
+    box-shadow: 0 0 0 3px rgba(4, 169, 109, 0.2);
+}
+.product-price-wrapper {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.price-label {
+    font-size: 14px;
+    color: #555;
+    margin-right: 5px;
+}
+
+.price-main {
+    font-size: 22px;
+    font-weight: 700;
+    color: #04a96d;
+}
+
+.old-price {
+    font-size: 15px;
+    color: #999;
+}
+
+.old-price .regular-price {
+    color: #999;
+}
+
+del {
+    text-decoration: line-through;
+}
+.sku-box {
+    padding: 5px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.sku-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.sku-code {
+    background: #04a96d;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.modern-action {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Common Button Style */
+.modern-action button {
+    flex: 1;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Order Now Button (Primary Solid) */
+.btn-order {
+    background: #04a96d;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(4, 169, 109, 0.3);
+}
+
+.btn-order:hover {
+    background: #038a59;
+    transform: translateY(-2px);
+}
+
+/* Add to Cart Button (Outlined Style) */
+.btn-cart {
+    background: #ffffff;
+    color: #04a96d;
+    border: 2px solid #04a96d !important;
+}
+
+.btn-cart:hover {
+    background: #04a96d;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 576px) {
+    .modern-action {
+        flex-direction: column;
+    }
+
+    .modern-action button {
+        width: 100%;
+    }
+}
+
+/* Out of Stock Button Wrapper */
+.stock-btn {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* Premium Out of Stock Button */
+.btn-out-stock {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    border: 2px solid #d32f2f;
+    background: linear-gradient(145deg, #ffebeb, #ffcfcf);
+    color: #d32f2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: not-allowed;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+    transition: all 0.3s ease;
+}
+
+/* Icon Animation */
+.btn-out-stock i {
+    animation: shake 1s infinite;
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0% {
+        transform: translateX(0px);
+    }
+
+    25% {
+        transform: translateX(-2px);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+
+    75% {
+        transform: translateX(-2px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+/* Hover disabled effect (subtle glow) */
+.btn-out-stock:hover {
+    transform: none;
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.35);
+}

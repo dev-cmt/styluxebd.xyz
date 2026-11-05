@@ -1,0 +1,1213 @@
+@font-face {
+    font-family: "HindSiliguri-Medium";
+    src: url('../fonts/Hind_Siliguri/HindSiliguri-Medium.ttf');
+}
+
+@font-face {
+    font-family: "HindSiliguri-Regular";
+    src: url('../fonts/Hind_Siliguri/HindSiliguri-Regular.ttf');
+}
+
+@font-face {
+    font-family: "HindSiliguri-Bold";
+    src: url('../fonts/Hind_Siliguri/HindSiliguri-Bold.ttf');
+}
+
+* {
+    font-family: "HindSiliguri-Regular";
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.banner-section {
+    background-image: url('../images/bg.30a19c2c.png');
+    padding: 50px 0 121px;
+    background-size: cover;
+}
+
+.banner-animation-left-image {
+    position: absolute;
+    top: 0;
+    left: 36px;
+    height: 582px;
+    animation: htfhtyf32659 1s ease-in-out infinite alternate;
+}
+
+.banner-animation-left-image img {}
+
+.banner-animation-right-image {
+    position: absolute;
+    top: 0;
+    right: 36px;
+    height: 582px;
+    animation: htfhtyf32659 1s ease-in-out infinite alternate;
+}
+
+.banner-animation-right-image img {}
+
+.banner-main-image {
+    width: 110%;
+    margin-left: -5%;
+    position: relative;
+    animation: gdyngf354A 1s ease-in-out infinite alternate;
+}
+
+.offer-image {
+    position: absolute;
+    top: -50px;
+    right: 100px;
+    height: 319px;
+    z-index: 8;
+}
+
+.call-text {
+    font-size: 25px;
+    line-height: 30px;
+    color: #c53407;
+    /* font-family: 'HindSiliguri-Medium'; */
+}
+
+.banner-title {
+    font-size: 60px;
+    line-height: 80px;
+    color: #fff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    font-family: "HindSiliguri-Bold";
+}
+
+.contact-info span {
+    font-size: 46px;
+    line-height: 65px;
+    color: #fdfdfd;
+    font-family: 'HindSiliguri-Bold';
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.gift-background-image img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.gift-section {
+    background-image: url('../images/bg3.8982fc28.png');
+    background-size: cover;
+}
+
+.gift-section .container {
+    padding-top: 250px;
+    padding-bottom: 80px;
+}
+
+.gift-box-title {
+    color: #391612;
+    margin-bottom: 50px;
+    font-size: 32px;
+    font-size: 46px;
+    line-height: 60px;
+    text-align: center;
+    padding: 0 30%;
+    font-family: "HindSiliguri-Medium";
+}
+
+.gift-item h4 {
+    font-size: 32px;
+    line-height: 42px;
+    color: #391612;
+    text-align: center;
+    margin-top: 30px;
+    font-family: "HindSiliguri-Medium";
+}
+
+.gift-item-image {
+    text-align: center;
+}
+
+.gift-item:hover h4 {
+    color: red;
+}
+
+.gift-item-image img {
+    transition: all .3s linear;
+}
+
+.gift-item:hover .gift-item-image img {
+    transform: scale(1.1);
+}
+
+.price-animation-left-image {
+    left: -170px;
+    position: absolute;
+    height: 347px;
+    animation: hjtf5461A 7s linear infinite;
+}
+
+.price-animation-right-image {
+    right: -170px;
+    position: absolute;
+    height: 347px;
+    animation: hjtf5461A 7s linear infinite;
+}
+
+.price-section {
+    padding: 50px 0 50px 0;
+    overflow: hidden;
+}
+
+.price-content {
+    text-align: center;
+}
+
+.price-title h4 {
+    font-size: 51px;
+    line-height: 69px;
+    color: #391612;
+    font-family: 'HindSiliguri-Bold';
+}
+
+.price-subtitle {
+    font-size: 32px;
+    line-height: 42px;
+    color: #c53407;
+    margin: 30px 0;
+}
+
+.order-now-button {
+    position: relative;
+    padding: 24px 70px;
+    color: #fff;
+    background-image: linear-gradient(90deg, #fe8d0e 0, #c53407 51%, #fe8d0e);
+    background-size: 180% auto;
+    display: inline-block;
+    transition: .2s;
+    font-family: "HindSiliguri-Medium";
+    border-radius: 100px;
+    font-size: 32px;
+    line-height: 42px;
+    border-bottom: 10px solid #fe8d0e;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.order-now-button span {
+    font-size: 32px;
+}
+
+.order-now-button svg {
+    font-size: 40px;
+    margin-top: -5px;
+    margin-right: 10px;
+    color: #fff;
+}
+
+.price-description {
+    font-size: 36px;
+    line-height: 50px;
+    color: #391612;
+    margin-top: 50px;
+}
+
+.order-now-button:hover {
+    background-position: 100%;
+    color: #000;
+    text-decoration: none;
+}
+
+.video-section {
+    padding: 50px 0;
+}
+
+.video-section .video {
+    height: 500px;
+    width: 100%;
+}
+
+.why-us-section {
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.why-us-left-animation-image img {
+    left: 0;
+    position: absolute;
+    height: 312px;
+    animation: bgfhyfu654599 2s linear infinite alternate;
+}
+
+.why-us-right-animation-image img {
+    right: 0;
+    position: absolute;
+    height: 312px;
+    animation: bgfhyfu654599 2s linear infinite alternate;
+}
+
+.why-us-card {
+    background-image: linear-gradient(0deg, #fdfdfd, #ffa78c);
+    margin-top: 100px;
+    border-radius: 50px;
+    text-align: center;
+    padding: 0 20px 40px;
+    transition: all .3s;
+}
+
+.why-us-card .title h4 {
+    font-size: 32px;
+    line-height: 42px;
+    color: #c53407;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.why-us-card .text p {
+    font-size: 24px;
+    line-height: 32px;
+    color: #391612;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.why-us-card .image {
+    padding: 20px;
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 30px;
+    margin-top: -50px;
+}
+
+.why-us-title {
+    font-size: 55px;
+    line-height: 70px;
+    text-align: center;
+    font-family: "HindSiliguri-Medium";
+    color: #c53407;
+    padding: 0 10% !important;
+}
+
+.why-us-card:hover {
+    background-image: linear-gradient(0deg, #fff, #f55828);
+}
+
+.price-section-two {
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.price-section-two-left-animation-image {
+    left: 0;
+    bottom: 0;
+    height: 580px;
+    position: absolute;
+    animation: grdtrd35498 2s linear infinite alternate;
+}
+
+.price-section-two-right-animation-image {
+    right: 0;
+    bottom: 0;
+    height: 580px;
+    position: absolute;
+    animation: grdtrd35498 2s linear infinite alternate;
+}
+
+.price-two-image {
+    display: flex;
+    justify-content: center;
+}
+
+.price-two-image img {
+    height: 812px;
+}
+
+.contact-info img {
+    height: auto;
+}
+
+.contact-info-two span {
+    font-size: 40px;
+    line-height: 56px;
+    color: #391612;
+    /* margin-left: 20px; */
+}
+
+.call-title {
+    font-size: 24px;
+    line-height: 31px;
+    color: #c53407;
+    margin-bottom: 10px;
+    margin-top: 70px;
+}
+
+.weight-text h5 {
+    font-size: 32px;
+    line-height: 42px;
+    color: #c53407;
+    margin-top: 20px;
+}
+
+.price-text h4 {
+    font-size: 51px;
+    line-height: 69px;
+    color: #391612;
+    font-family: "HindSiliguri-Bold";
+    margin: 20px 0 30px;
+}
+
+.price-content-two {
+    position: absolute;
+    text-align: center;
+    bottom: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+}
+
+.place-order {
+    background: #5c0510;
+    position: relative;
+    background-size: cover;
+    background-position: -100px;
+    margin-top: 100px;
+}
+
+.place-order .custom-container {
+    width: 68%;
+    margin: auto;
+    padding: 100px 0 !important;
+}
+
+.place-order .container .row>h2 {
+    color: #fff;
+    padding-bottom: 30px;
+    text-align: center;
+    font-size: 46px;
+    line-height: 47px;
+    font-family: "HindSiliguri-Bold";
+}
+
+.place-order .container .row>.animation {
+    background-image: linear-gradient(-225deg,
+            #231557,
+            #e0aa55 29%,
+            #ff1361 67%,
+            #ffbf0b);
+    background-clip: border-box;
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text_clip 3s linear infinite;
+    display: inline-block;
+    margin-top: 100px;
+}
+
+@keyframes text_clip {
+    to {
+        background-position: 200%;
+    }
+}
+
+.place-order .billing>.title {
+    line-height: 90px;
+    font-family: "HindSiliguri-Bold";
+    color: #fff;
+    font-size: 30px;
+}
+
+.place-order .billing>.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.place-order .billing>.input-field label {
+    font-family: "HindSiliguri-Medium";
+    color: #e1e1e1;
+}
+
+.place-order .billing>.input-field input {
+    border: 1px solid #d1d5db;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+.place-order .billing>.input-field input:focus-visible {
+    outline: none;
+}
+
+.place-order .billing>.input-field textarea {
+    border: 1px solid #d1d5db;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+.place-order .billing>.input-field select {
+    border: 1px solid #d1d5db;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 90%;
+    color: #917979;
+    font-size: 16px;
+}
+
+.place-order .billing>.input-field select:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.place-order .billing>.input-field textarea:focus-visible {
+    outline: none;
+}
+
+.place-order .billing>.input-field select:focus-visible {
+    outline: none;
+}
+
+.place-order .your-order>.title {
+    line-height: 90px;
+    font-family: "HindSiliguri-Bold";
+    color: #fff;
+    font-size: 30px;
+}
+
+.payment-card {
+    background: #fff;
+    box-shadow: 0 -68px 80px rgb(0 0 0 / 3%), 0 35px 46.8519px rgb(0 0 0 / 2%),
+        0 -3px 25.4815px rgb(0 0 0 / 2%), 0 20px 13px rgb(0 0 0 / 2%),
+        0 8.14815px 6.51852px rgb(0 0 0 / 1%), 0 1.85185px 3.14815px rgb(0 0 0 / 1%);
+    border-radius: 15px;
+    width: 300px;
+}
+
+.payment-card>h3 {
+    font-size: 24px;
+    color: #3c1115;
+    padding-top: 0;
+    font-family: "HindSiliguri-Bold";
+    line-height: 30px;
+    padding: 7px 28px 1px;
+}
+
+.payment-card>.order-payment {
+    display: flex;
+    align-items: center;
+    /* margin-top: 20px; */
+    padding: 0px 27px 1px;
+    margin-bottom: 20px;
+}
+
+.payment-card>.order-payment label {
+    margin-bottom: 0;
+    font-family: "HindSiliguri-Medium";
+    font-size: 18px;
+    line-height: 35px;
+    font-style: italic;
+}
+
+.payment-card>.order-payment input {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+    position: absolute;
+    opacity: 0;
+    border: 1px solid #d1d5db;
+    padding: 12px 20px;
+}
+
+.payment-card>.order-payment input+label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+}
+
+.payment-card>.order-payment input:checked+label:before {
+    background: #ee0252;
+}
+
+.payment-card>.order-payment input+label:before {
+    content: "";
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: #b8b8b8;
+}
+
+.payment-card>.order-payment input:checked+label:after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 15px;
+    background: #fff;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 #fff, 4px 0 0 #fff, 4px -2px 0 #fff, 4px -4px 0 #fff,
+        4px -6px 0 #fff, 4px -8px 0 #fff;
+    transform: rotate(45deg);
+}
+
+.payment-card>.payment-footer {
+    background: #ee0252;
+    position: relative;
+    border-radius: 0 0 15px 15px;
+    padding: 8px 28px !important;
+}
+
+.payment-card>.payment-footer p {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 18px !important;
+    line-height: 26px;
+}
+
+.payment-card>.payment-footer:after {
+    border-bottom: 15px solid #ee0252;
+    position: absolute;
+    content: "";
+    top: -15px;
+    left: 20%;
+    width: 30px;
+    height: 15px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+}
+
+.place-order .your-order>ul {
+    border-radius: 15px;
+    border: 1px solid #d1d5db;
+    padding: 0;
+    font-family: "Noto Serif Bengali", serif;
+}
+
+.place-order .your-order>ul li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    border-bottom: 1px solid #d1d5db;
+    color: #fff;
+}
+
+.place-order .your-order>ul li h4 {
+    font-size: 20px;
+    font-family: "HindSiliguri-Medium";
+    line-height: 35px;
+}
+
+.place-order .your-order>ul li h5 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.place-order .your-order>ul li:last-child {
+    border-bottom: 0;
+}
+
+.place-order .your-order>ul>li>.left {
+    width: 50%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.place-order .your-order>ul>li>.left>.img {
+    width: 80px;
+    margin-right: 10px;
+}
+
+.place-order .your-order>ul>li>.left>.img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.place-order .your-order>ul>li>.left>p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 15px;
+    /* margin-top: 0; */
+    margin: 0;
+}
+
+.place-order .your-order>ul>li>.right {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.place-order .your-order>ul>li>.right>input {
+    width: 80px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.place-order .your-order>ul>li>h5>.order_checkbox {
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.place-order .your-order>ul>li>h5>.order_checkbox input {
+    width: 15px;
+    height: 12px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.order-button {
+    width: 90%;
+    /* background: #ff466d; */
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 30px;
+    color: #fff;
+    margin-top: 20px;
+    font-family: "HindSiliguri-Medium";
+    border: 0;
+    background: linear-gradient(180deg, #c53407, #c53407);
+}
+
+.order-button svg {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.footer {
+    width: 100%;
+    font-family: Poppins, sans-serif;
+    background-color: #f6f6f6;
+}
+
+
+
+.footer .content {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+}
+
+.footer .content .left {
+    width: 80%;
+}
+
+.footer .content .right {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer .content .left a {
+    font-size: 16px;
+    color: #464646;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.footer .content .right a {
+    font-size: 16px;
+    color: #464646;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.footer .content .left a svg {
+    font-size: 30px;
+}
+
+.footer .copyright {
+    border-top: 1px solid hsla(0, 0%, 50%, 0.5);
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.footer .copyright p a {
+    display: inline;
+    font-size: 16px;
+    font-family: "HindSiliguri-Medium";
+    color: #001320;
+    padding: 0 5px;
+    text-decoration: none;
+}
+
+.payment-method {
+    width: 90%;
+}
+
+.payment-method-box {
+    padding: 16px;
+    background: #e9e9e9;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.payment-method-box p {
+    margin-bottom: 0;
+    color: #646464;
+    font-size: 17px;
+}
+
+.payment-title p {
+    font-size: 18px;
+    font-family: "HindSiliguri-Medium";
+    color: #edebeb;
+    margin-bottom: 10px;
+}
+
+.triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 28px solid transparent;
+    border-right: 28px solid transparent;
+    border-bottom: 28px solid #e9e9e9;
+    position: absolute;
+    top: -15px;
+}
+
+.copy-right-text p {
+    font-size: 13px;
+    font-family: "HindSiliguri-Medium";
+    color: #ffffff;
+}
+
+.order_checkbox label {
+    font-size: 16px;
+    font-family: "HindSiliguri-Medium";
+    color: #e1e1e1;
+}
+
+.shipping_title {
+    font-size: 18px;
+    color: #e1e1e1;
+    font-family: "HindSiliguri-Bold";
+    margin-bottom: 15px;
+}
+
+@keyframes grdtrd35498 {
+    0% {
+        transform: rotate(0)
+    }
+
+    to {
+        transform: rotate(5deg)
+    }
+}
+
+@keyframes bgfhyfu654599 {
+    0% {
+        transform: scale(.9)
+    }
+
+    to {
+        transform: scale(1.1)
+    }
+}
+
+@keyframes hjtf5461A {
+    0% {
+        transform: rotate(0)
+    }
+
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes gdyngf354A {
+    0% {
+        top: 0
+    }
+
+    to {
+        top: -20px
+    }
+}
+
+@keyframes htfhtyf32659 {
+    0% {
+        top: 0
+    }
+
+    to {
+        top: -20px
+    }
+}
+
+@media only screen and (max-width: 1440px) {
+    .banner-content {
+        padding: 10px 160px;
+    }
+
+    .banner-title {
+        font-size: 44px;
+    }
+
+    .banner-main-image {
+        width: 100%;
+    }
+
+    .banner-main-image img {
+        width: 100%;
+    }
+
+    .offer-image img {
+        width: 200px;
+    }
+
+    .banner-animation-left-image img {
+        height: 300px;
+    }
+
+    .banner-animation-right-image img {
+        height: 300px;
+    }
+
+    .logo img {
+        width: 100px;
+    }
+
+    .banner-title {
+        font-size: 35px;
+        line-height: 55px;
+    }
+
+    .banner-content {
+        padding: 10px 100px;
+    }
+
+    .offer-image {
+        right: 0;
+    }
+
+    .banner-main-image {
+        margin-left: 0;
+    }
+
+    .contact-info span {
+        font-size: 30px;
+    }
+
+    .banner-section {
+        padding: 10px 0 121px;
+    }
+
+    .gift-box-title {
+        padding: 0 20%;
+    }
+
+    .why-us-title {
+        font-size: 40px;
+        line-height: 60px;
+    }
+
+    .why-us-left-animation-image img {
+        height: 200px;
+    }
+
+    .why-us-right-animation-image img {
+        height: 200px;
+    }
+
+    .price-two-image img {
+        height: 600px;
+    }
+
+    .contact-info img {
+        height: auto;
+    }
+
+    .price-content-two {
+        bottom: 130px;
+    }
+
+    .call-title {
+        font-size: 14px;
+    }
+
+    .price-text h4 {
+        font-size: 35px;
+        margin: 0px 0 4px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .banner-content {
+        padding: 10px 40px;
+    }
+
+    .banner-title {
+        font-size: 20px;
+        line-height: normal;
+    }
+
+    .call-text {
+        font-size: 14px;
+        line-height: normal;
+    }
+
+    .contact-info img {
+        width: 30px;
+    }
+
+    .contact-info span {
+        font-size: 18px;
+    }
+
+    .offer-image img {
+        width: 90px;
+    }
+
+    .banner-animation-left-image {
+        left: 10px;
+    }
+
+    .banner-animation-left-image img {
+        height: 120px;
+    }
+
+    .banner-animation-right-image {
+        right: 10px;
+    }
+
+    .banner-animation-right-image img {
+        height: 120px;
+    }
+
+    .contact-info {
+        margin-top: 0;
+    }
+
+    .gift-box-title {
+        padding: 0 10%;
+        font-size: 24px;
+        line-height: normal;
+    }
+
+    .gift-section .container {
+        padding-top: 110px;
+        padding-bottom: 50px;
+    }
+
+    .gift-item h4 {
+        font-size: 20px;
+        line-height: normal;
+        margin-top: 17px;
+    }
+
+    .price-animation-left-image {
+        left: -40px;
+        height: 80px;
+    }
+
+    .price-animation-left-image img {
+        height: 80px;
+    }
+
+    .price-animation-right-image {
+        right: -40px;
+        height: 80px;
+    }
+
+    .price-animation-right-image img {
+        height: 80px;
+    }
+
+    .price-title h4 {
+        font-size: 29px;
+        line-height: normal;
+    }
+
+    .price-subtitle {
+        font-size: 22px;
+        line-height: normal;
+        margin: 22px 0;
+    }
+
+    .price-subtitle {
+        font-size: 22px;
+        line-height: normal;
+    }
+
+    .price-title h4 {
+        font-size: 26px;
+        line-height: normal;
+    }
+
+    .order-now-button {
+        padding: 15px 40px;
+        font-size: 32px;
+        line-height: normal;
+    }
+
+    .order-now-button svg {
+        font-size: 22px;
+        margin-top: 0;
+        margin-right: 0;
+        color: #fff;
+    }
+
+    .order-now-button span {
+        font-size: 18px;
+        line-height: normal;
+    }
+
+    .price-description {
+        font-size: 20px;
+        line-height: normal;
+        margin-top: 50px;
+        font-family: 'HindSiliguri-Medium';
+    }
+
+    .video iframe {
+        height: 200px;
+        width: 100%;
+    }
+
+    .why-us-title {
+        font-size: 24px;
+        line-height: normal;
+        padding: 0 14%;
+    }
+
+    .why-us-left-animation-image img {
+        height: 80px;
+    }
+
+    .why-us-right-animation-image img {
+        height: 80px;
+    }
+
+    .video-section .video {
+        height: 200px;
+        width: 100%;
+    }
+
+    .why-us-card .text p {
+        font-size: 20px;
+        line-height: normal;
+    }
+
+    .why-us-card .title h4 {
+        font-size: 24px;
+        line-height: normal;
+    }
+
+    .call-title {
+        font-size: 19px;
+    }
+
+    .weight-text h5 {
+        font-size: 20px;
+        line-height: normal;
+        margin: 0;
+    }
+
+    .price-text h4 {
+        font-size: 22px;
+        margin: 0px 0 4px;
+    }
+
+    .price-content-two {
+        bottom: 60px;
+    }
+
+    .price-two-image img {
+        height: 300px;
+        width: 100%;
+    }
+
+    .price-section-two-left-animation-image {
+        bottom: 4px;
+        height: 80px;
+    }
+
+    .price-section-two-left-animation-image img {
+        height: 100%;
+    }
+
+    .price-section-two-right-animation-image {
+        bottom: 4px;
+        height: 80px;
+    }
+
+    .price-section-two-right-animation-image img {
+        height: 100%;
+    }
+
+    .contact-info-two img {
+        width: 30px;
+        height: auto;
+    }
+
+    .place-order .container .row>.animation {
+        margin-top: 50px;
+    }
+
+    .place-order .container .row>h2 {
+        padding-bottom: 0;
+        font-size: 28px;
+        line-height: normal;
+    }
+
+    .place-order .billing>.input-field input {
+        width: 100%;
+    }
+
+    .place-order .billing>.input-field textarea {
+        width: 100%;
+    }
+
+    .order-button {
+        width: 100%;
+    }
+
+    .place-order .your-order>.title {
+        font-size: 24px;
+    }
+
+    .place-order .billing>.title {
+        font-size: 24px;
+    }
+
+    .footer .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    .footer .content .left {
+        width: 100%;
+    }
+
+    .footer .content .right {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+}

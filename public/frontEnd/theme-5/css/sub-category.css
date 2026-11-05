@@ -1,0 +1,93 @@
+.modern-category-card {
+    width: 100%;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    border: 1px solid #eee;
+    overflow: visible;
+    height: 350px;
+}
+
+.modern-category-header {
+    padding: 15px 18px;
+    font-weight: 600;
+    font-size: 16px;
+    background: #09ac5e;
+    color: #fff;
+}
+
+.modern-category-list {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+}
+
+.modern-category-list li {
+    position: relative;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.category-item a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.category-item:hover {
+    background: rgba(9, 172, 94, 0.08);
+}
+
+.category-item:hover a {
+    color: #09ac5e;
+}
+
+/* Arrow */
+.category-item i {
+    color: #c45013;
+    font-size: 14px;
+}
+
+/* Flyout submenu */
+.subcategory {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    min-width: 230px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    display: none;
+    padding: 8px 0;
+    z-index: 999;
+}
+
+/* Show submenu on hover */
+.modern-category-list li:hover > .subcategory {
+    display: block;
+    animation: slideIn 0.25s ease;
+}
+
+/* Smooth animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

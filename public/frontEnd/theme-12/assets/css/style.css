@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&family=Geist:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Noto+Serif+Bengali:wght@100..900&display=swap');
+
+.chivo-700 {
+    font-family: "Chivo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+body { font-family: 'Geist', sans-serif; color:#2b2620; }
+h1,h2,h3,.font-display { font-family: 'Chivo', serif; }
+.tracked { letter-spacing: 0.18em; }
+.tracked-sm { letter-spacing: 0.1em; }
+.card-img { aspect-ratio: 3/4; object-fit: cover; }
+.fade-badge {
+    background: rgba(43,38,32,0.85);
+}
+::selection{ background:#8a6a52; color:#fff; }
+.scrollbar-none::-webkit-scrollbar{ display:none; }
+.scrollbar-none{ -ms-overflow-style:none; scrollbar-width:none; }
+
+/* Mega menu */
+.mega-panel{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#1f1c17;
+    color:#fff;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:opacity .28s ease, transform .28s ease, visibility .28s ease;
+    pointer-events:none;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.35);
+}
+.mega-panel.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    pointer-events:auto;
+}
+.mega-col-title{
+    color:#9c9284;
+    font-size:11px;
+    letter-spacing:.12em;
+    margin-bottom:14px;
+}
+.mega-link{
+    display:block;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.02em;
+    color:#f2efe9;
+    margin-bottom:12px;
+    transition:color .15s ease, transform .15s ease;
+}
+.mega-link:hover{
+    color:#c99b74;
+    transform:translateX(3px);
+}
+.nav-trigger.active{ color:#8a6a52; }
+
+/* Fluid container: full width, slightly inset from screen edges */
+.container-fluid{
+    width:100%;
+    max-width:1760px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* Product card: two-image hover swap + zoom */
+.product-media{
+    position:relative;
+    overflow:hidden;
+    aspect-ratio:2/3;
+    background:#eee;
+}
+.product-media img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:opacity .55s ease, transform .7s ease;
+}
+.product-media .img-back{ opacity:0; }
+.product-media:hover .img-category-front{ transform:scale(1.08); }
+.product-media:hover .img-single{ transform:scale(1.08); }
+.product-media:hover .img-front{ opacity:0; transform:scale(1.08); }
+.product-media:hover .img-back{ opacity:1; transform:scale(1.08); }
+
+/* Carousel controls */
+.carousel-btn{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(43,38,32,0.18);
+    color:#2b2620;
+    background:#fff;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+}
+.carousel-btn:hover{ background:#2b2620; color:#fff; border-color:#2b2620; }
+.carousel-track{ scroll-padding-left:4px; }
+
+/* Add to cart hover button */
+.add-cart-btn{
+    position:absolute;
+    bottom:12px;
+    right:12px;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:#fff;
+    color:#2b2620;
+    font-size:12px;
+    font-weight:500;
+    padding:9px 16px;
+    border-radius:999px;
+    opacity:1;
+    /*transform:translateY(10px);*/
+    /*transition:opacity .3s ease, transform .3s ease, background .2s ease, color .2s ease;*/
+    box-shadow:0 8px 18px rgba(0,0,0,0.18);
+    cursor:pointer;
+    border:none;
+}
+.product-media:hover .add-cart-btn{
+    opacity:1;
+    transform:translateY(0);
+}
+.add-cart-btn:hover{ background: #49403c; color:#fff; }
+.add-cart-btn.added{ background:#3c6e5e; color:#fff; }
+
+/* Offcanvas menu */
+#offcanvasOverlay.open{ opacity:1; visibility:visible; }
+#offcanvasMenu.open{ transform:translateX(0); }
+.offcanvas-accordion-panel.open{ max-height:400px; }
+.accordion-chevron.rotated{ transform:rotate(180deg); }
+
+/* Search modal */
+#searchOverlay.open{ opacity:1; visibility:visible; }
+#searchOverlay.open #searchModal{ opacity:1; transform:translateY(0); }
+.search-result-card{ font-size:12px; }

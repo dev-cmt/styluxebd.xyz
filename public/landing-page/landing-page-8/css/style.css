@@ -1,0 +1,562 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'AnekBangla-Regular';
+    src: url('../fonts/Anek_Bangla/AnekBangla-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'AnekBangla-Medium';
+    src: url('../fonts/Anek_Bangla/AnekBangla-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'AnekBangla-Bold';
+    src: url('../fonts/Anek_Bangla/AnekBangla-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'HindSiliguri-Regular';
+    src: url('../fonts/Hind_Siliguri/HindSiliguri-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'HindSiliguri-Medium';
+    src: url('../fonts/Hind_Siliguri/HindSiliguri-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'HindSiliguri-Bold';
+    src: url('../fonts/Hind_Siliguri/HindSiliguri-Bold.ttf');
+}
+
+:root {
+    --primary: #FFCC00;
+    --secondary: #00FF00;
+    --dark-bg: #000000;
+    --light-dark-bg: #0a0a0a;
+    --light-bg : #ffffff;
+    --light-text: #ffffff;
+    --dark-text: #000;
+    --muted-text: #aaaaaa;
+}
+
+body{
+    font-family: 'HindSiliguri-Regular';
+}
+
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* Buttons */
+.btn-order {
+    background: var(--primary);
+    color: #000;
+    font-weight: 800;
+    padding: 15px 40px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    text-decoration: none !important;
+    display: inline-block;
+    font-size: 2rem;
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+    text-transform: uppercase;
+    animation: pulseZoom 1.8s infinite;
+}
+.btn-order:hover {
+    background: var(--primary);
+    transform: scale(1.08);
+}
+@keyframes pulseZoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* Banner Section - 1*/
+.banner-section{
+    background-color: #000;
+    padding: 60px 20px;
+}
+
+.section-title{
+    border: 1px solid #FFFFFF30;
+    border-radius: 40px;
+    background: #4B5B5E8C;
+    color: #fff;
+    padding: 11px;
+    display: inline-block;
+}
+
+.banner-title{
+    line-height: 1.8em;
+    margin: 40px 0;
+    color: #fff;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+.highlight-yellow { 
+    color: var(--primary); 
+}
+.banner-text{
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5rem;
+    width: 80%;
+    margin: auto;
+}
+
+/* Motivation Section - 2 */
+.motivation-section{
+    background-color: #222;
+    padding: 40px 20px;
+}
+.motivation-content{
+    padding: 0% 15%;
+}
+.motivation-title{
+    line-height: 1.4em;
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+.motivation-text{
+    color: var(--light-text);
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin: 20px 0;
+}
+.motivation-subtitle{
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin: 20px 0;
+}
+
+/* Feature Section - 3 */
+.feature-section{
+    background-color: #000;
+    padding: 40px 20px;
+}
+
+.feature-title{
+    line-height: 1.4em;
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+.feature-text{
+    color: var(--light-text);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+.feature-list { 
+    text-align: left; 
+    display: inline-block; 
+    margin-top: 20px; 
+}
+.feature-list li { 
+    list-style: none; 
+    margin-bottom: 10px; 
+    color: #fff;
+    line-height: 1.8em;
+    font-size: 1.4rem;
+}
+.feature-list li i { 
+    color: #ffcc00; 
+    margin-right: 10px; 
+}
+
+
+/* Pricing Section - 4 */
+.pricing-section{
+    background-color: var(--light-bg);
+    padding: 40px 20px;
+}
+.pricing-content{
+    text-align: center;
+}
+.pricing-title{
+    line-height: 1.4em;
+    color: var(--dark-text);
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+.pricing-text{
+    color: #ff0000;
+    font-weight: 700;
+    font-size: 1.5rem;
+    width: 70%;
+    margin: 20px auto;
+}
+
+.regular-price {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #555;
+  margin: 15px 0;
+}
+
+.strike {
+  position: relative;
+}
+
+.strike::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 4px;
+  width: 0;
+  background: var(--secondary);
+  transform: translateY(-50%);
+  animation: strikeAnim 2s ease-in-out infinite;
+}
+
+@keyframes strikeAnim {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.price-offer h3{
+    color: #000;
+    font-weight: 800;
+    padding: 15px 40px;
+    border: 1px solid #fd0000;
+    border-radius: 40px;
+    font-size: 2rem;
+    display: inline-block;
+}
+
+/* Size Chart Section - 5 */
+.sizechart-section{
+    background-color: var(--dark-bg);
+    padding: 40px 20px;
+}
+
+.sizechart-title{
+    line-height: 1.4em;
+    color: var(--light-text);
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.sizechart-text{
+    color: var(--light-text);
+    font-weight: 700;
+    font-size: 1.8rem;
+    width: 70%;
+    margin: 20px auto;
+}
+.sizechart-call-btn{
+    display: inline-block;
+    padding: 5px 10px !important;
+    background: var(--primary);
+    color: #222;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 10px;
+    margin: 5px;
+}
+.sizechart-whatsapp-btn{
+    display: inline-block;
+    padding: 5px 10px !important;
+    background: var(--secondary);
+    color: #222;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+/* Order Section - 6 */
+.order-content{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    transition: all .3s ease;
+}
+
+.order-content:hover{
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+.order-title{
+    line-height: 1.4em;
+    color: var(--dark-text);
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+.order-subtitle{
+    line-height: 1.4em;
+    color: var(--dark-text);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.order-text{
+    color: #ff0000;
+    font-weight: 700;
+    font-size: 1.5rem;
+    width: 70%;
+    margin: 20px auto;
+}
+
+.billing-details {
+    text-align: left !important;
+}
+.billing-details label {
+    font-family: 'HindSiliguri-Regular';
+    font-size: 16px;
+    font-weight: 600;
+    color: #2C3F60;
+    line-height: 1em;
+    letter-spacing: 0.3px;
+    margin-bottom: 8px;
+}
+
+.billing-details .form-control {
+    font-family: 'HindSiliguri-Regular' !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    display: block;
+    width: 100%;
+    min-height: 34px;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555 !important;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid;
+    border-color: #2C3F60;
+    border-radius: 3px;
+    box-shadow: none;
+    height: auto;
+}
+
+.billing-details .form-control:focus,
+.billing-details .form-control:focus {
+    outline: 0;
+    border-color: #2C3F60;
+    box-shadow: none;
+}
+
+.product-card {
+    background-color: #f7f7f7;
+    border: 1px solid #b0b0b0;
+    padding: 10px 10px;
+    width: 100%;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    color: #2C3F60;
+}
+
+.product-card .product-image img {
+    width: 65px;
+    border-radius: 10px;
+}
+
+.product-card .product-item {
+    display: flex;
+    align-items: center;
+}
+
+.product-item .product-input,
+.product-card .product-image,
+.product-card .product-info {
+    margin-right: 20px;
+    text-align: left;
+}
+
+.product-card .product-info .product-name-quantity .name,
+.product-card .product-info .product-name-quantity .quantity {
+    font-size: 1.07em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.8;
+    color: #2C3F60;
+}
+
+.product-card .product-info {
+    display: block;
+}
+
+.product-quantity-price .quantity input {
+    border: 1px solid #dcdada;
+    border-left: 0;
+    border-right: 0;
+    text-align: center;
+    max-width: 50px;
+    min-height: 30px;
+    padding: 2px;
+    margin: 0;
+    border-radius: 0;
+    color: #666;
+}
+
+.product-quantity-price .quantity input:focus {
+    border: 1px solid #dcdada;
+    border-left: 0;
+    border-right: 0;
+    outline: 0;
+    box-shadow: none;
+}
+
+.product-quantity-price .quantity {
+    display: flex;
+}
+
+.product-quantity-price {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.product-quantity-price .price {
+    margin-left: 10px;
+}
+
+.quantity-minus,
+.quantity-plus {
+    background-color: #f7f7f7;
+    border: 1px solid #dcdada;
+    height: 30px;
+    width: 26px;
+    margin: 0;
+    padding: 6px 6px;
+    color: #555;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.quantity-minus {
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.quantity-plus {
+    border-left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.order-details{
+    text-align: left !important;
+}
+.bg-peach {
+    background-color: #fbcbad;
+    max-width: 400px;
+    margin: auto;
+}
+.speech-bubble {
+    position: relative;
+}
+.speech-bubble::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 30px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #ffffff;
+}
+
+.order-place-button{
+    background-color: var(--secondary);
+    color: var(--dark-text);
+    font-family: 'HindSiliguri-Bold';
+    font-weight: 700;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 20px 40px;
+    text-align: center;
+    transition: all .3s;
+    line-height: 1;
+    z-index: 100;
+    text-decoration: none;
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid var(--dark-text);
+}
+
+.order-place-button:hover {
+    background-color: #84ff84;
+}
+
+/* Footer Section */
+footer {
+    background-color: #2C3F600F;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 30px 0px 30px 0px;
+}
+
+.copy-right-text h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #54595F;
+    text-align: center;
+    font-weight: 500;
+}
+
+.payment-method {
+    margin: 1em 0 0;
+    background-color: #f7f7f7;
+    padding: 15px
+}
+
+.payment-title {
+    font-size: 16px;
+    color: #404040;
+    font-family: 'HindSiliguri-Regular';
+    margin-bottom: 0;
+}
+
+.payment-text {
+    color: #404040;
+    margin-bottom: 0.5em;
+    padding: 1em;
+    border-radius: 2px;
+    line-height: 1.5;
+    margin-top: 20px;
+    background-color: #eaeaea;
+}
+
+.payment-text p {
+    margin: 0;
+    font-family: 'HindSiliguri-Regular';
+    font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .banner-title { font-size: 1.8rem; }
+    .banner-subtitle { font-size: 1rem; width: 100%; margin: auto; }
+}

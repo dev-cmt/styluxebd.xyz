@@ -1,0 +1,141 @@
+.column-5{
+    padding: 6px;
+}
+
+/* CARD */
+.product-card{
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all .35s ease;
+}
+
+.product-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0,0,0,.15);
+}
+
+/* IMAGE */
+.product-image{
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+
+.product-card:hover .product-image img{
+    transform: scale(1.12);
+}
+
+/* SAVE BADGE */
+.save-badge{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg,#ff3d3d,#ff9800);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    z-index: 2;
+    box-shadow: 0 6px 15px rgba(0,0,0,.2);
+}
+
+/* BODY */
+.product-body{
+    padding: 14px 14px 10px;
+}
+
+.product-title{
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.product-title:hover{
+    color: #007A3A;
+}
+
+/* PRICE */
+.price-box{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.old-price{
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.new-price{
+    font-size: 18px;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+/* ACTIONS */
+.product-actions{
+    margin-top: auto;
+    /*display: flex;*/
+    gap: 10px;
+    padding: 12px;
+}
+
+.product-actions > *{
+    flex: 1;               /* 🔥 50% + 50% */
+}
+
+.btn-cart,
+.btn-buy{
+    width: 100%;           /* 🔥 full inside 50% */
+    padding: 5px;
+    margin-bottom: 3px;
+    border-radius: 12px;
+    font-size: 14px;
+    /*font-weight: 200;*/
+    cursor: pointer;
+}
+
+.btn-cart{
+    background: black;
+    color: #fff;
+}
+
+.btn-cart:hover{
+    background: #3a3838;
+}
+
+.btn-buy{
+    background: linear-gradient(135deg,#007A3A,#007A3A);
+    color: #fff;
+}
+
+.btn-buy:hover{
+    opacity: .9;
+}
+
+/* MOBILE */
+@media (max-width: 576px){
+    .product-title{
+        font-size: 14px;
+    }
+    .new-price{
+        font-size: 16px;
+    }
+}

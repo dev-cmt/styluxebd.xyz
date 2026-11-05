@@ -1,0 +1,163 @@
+.offcanvas-cart {
+    position: fixed;
+    top: 0;
+    right: -550px;           /* default desktop hidden position */
+    width: 500px;            /* desktop width */
+    max-width: 100%;         /* mobile support */
+    height: 100%;
+    background: #fff;
+    z-index: 999999999999999;
+    transition: 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.offcanvas-cart.show {
+    right: 0;
+}
+
+/* Scrollable Body */
+.offcanvas-cart-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 120px;
+}
+
+/* Footer Fixed Bottom */
+.offcanvas-cart-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+
+/* Close Button */
+.offcanvas-close {
+    background: none;
+    border: none;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Table Alignment */
+.cart-table td,
+.cart-table th {
+    vertical-align: middle;
+}
+
+/* Qty Buttons */
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+}
+
+/* =============================
+   📱 MOBILE RESPONSIVE SETTINGS
+   ============================= */
+
+@media (max-width: 767px) {
+    .offcanvas-cart {
+        width: 100% !important;     /* full width on mobile */
+        right: -100%;               /* hide fully on right */
+    }
+
+    .offcanvas-cart.show {
+        right: 0 !important;
+    }
+
+    .qty-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+    }
+
+    .cart-table th,
+    .cart-table td {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .offcanvas-close {
+        font-size: 26px;
+    }
+}
+
+/* Cart icon */
+.cart-icon {
+    position: relative;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: red;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* Offcanvas */
+.custom-offcanvas {
+    position: fixed;
+    top: 0;
+    right: -400px; /* hidden by default */
+    width: 350px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+    z-index: 1050;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+}
+
+/* Show offcanvas */
+.custom-offcanvas.show {
+    right: 0;
+}
+
+.offcanvas-cart-items {
+    max-height: calc(100% - 120px);
+    overflow-y: auto;
+}
+
+.offcanvas-cart-item .remove-btn {
+    color: red;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.offcanvas-cart-item .item-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.offcanvas-cart-item .item-qty-price {
+    font-size: 13px;
+    color: #555;
+}
+
+/* Overlay */
+.offcanvas-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1040;
+    display: none;
+}
+
+.offcanvas-overlay.show {
+    display: block;
+}
