@@ -674,7 +674,7 @@ class OrderController extends Controller
             $order->update([
                 'payment_status' => 0,
                 'paid'           => 0,
-                'due'            => $order->due,
+                'due'            => $order->total,
             ]);
             if ($order->get_transactions && count($order->get_transactions) > 0) {
                 foreach ($order->get_transactions as $transaction) {

@@ -313,7 +313,7 @@
                             <select name="account_id" class="form-select" required>
                                 @foreach ($accounts as $account)
                                     <option value="{{ $account->id }}">
-                                        {{ $account->account_type == 1 ? 'Bank - ' . $account->bank_account_no . '(' . $web_settings->currency_sign . number_format($account->balance, 2) . ')' : ($account->account_type == 2 ? 'Bkash - ' . $account->bkash_no . '(' . $web_settings->currency_sign . number_format($account->balance, 2) . ')' : ($account->account_type == 3 ? 'Nagad - ' . $account->nagad_no . '(' . $web_settings->currency_sign . number_format($account->balance, 2) . ')' : 'Rocket - ' . $account->rocket_no . '(' . $web_settings->currency_sign . number_format($account->balance, 2) . ')')) }}
+                                        {{ $account->get_account_name() }} ({{ $web_settings->currency_sign }}{{ number_format($account->balance, 2) }})
                                     </option>
                                 @endforeach
                             </select>

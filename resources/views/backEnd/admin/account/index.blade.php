@@ -185,7 +185,7 @@
                                 <option value="1">Bank</option>
                                 <option value="2">Bkash</option>
                                 <option value="3">Nagad</option>
-                                <option value="4">Rocked</option>
+                                <option value="4">Rocket</option>
                                 <option value="5">Cash</option>
                             </select>
                         </div>
@@ -420,7 +420,7 @@
                                 <option value="1">Bank</option>
                                 <option value="2">Bkash</option>
                                 <option value="3">Nagad</option>
-                                <option value="4">Rocked</option>
+                                <option value="4">Rocket</option>
                                 <option value="5">Cash</option>
                             </select>
                         </div>
@@ -655,7 +655,7 @@
                         <input type="hidden" name="account_id" id="account_id">
                         <div class="row mb-3">
                             <div class="col-md-12">
-                                <label for="balance" class="form-label">Balanace</label>
+                                <label for="balance" class="form-label">Balance</label>
                                 <input type="number" name="balance" id="balance" class="form-control"
                                     placeholder="0" required>
                             </div>
@@ -767,8 +767,7 @@
                 $('.bank_info').addClass('d-none');
                 $('.bkash_info').addClass('d-none');
             } else if (data.account_type == 4) {
-                $('.nagad_info').removeClass('d-none');
-                $('.rocket_info').addClass('d-none');
+                $('.rocket_info').removeClass('d-none');
                 $('.bank_info').addClass('d-none');
                 $('.bkash_info').addClass('d-none');
                 $('.nagad_info').addClass('d-none');

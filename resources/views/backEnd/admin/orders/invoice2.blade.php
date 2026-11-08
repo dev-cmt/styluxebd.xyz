@@ -165,9 +165,11 @@
             <div class="left-header">
                 <div class="left-header-inner">
                     <img src="{{ asset($web_settings->get_header->file_url) }}" alt="">
-                    <p style="margin: 0;margin-bottom: 10px;margin-top: 10px">{{ $web_settings->website_address }} <br>
-                        <strong>Mobile: </strong>{{ $web_settings->website_phone }},
-                        {{ $web_settings->website_phone2 }}
+                    <p style="margin: 0;margin-bottom: 10px;margin-top: 10px">
+                        <strong>{{ $web_settings->website_name ?? config('app.name') }}</strong><br>
+                        {{ $web_settings->website_address }} <br>
+                        <strong>Mobile: </strong>{{ $web_settings->website_phone }}@if ($web_settings->website_phone2),
+                        {{ $web_settings->website_phone2 }}@endif
                     </p>
                 </div>
             </div>

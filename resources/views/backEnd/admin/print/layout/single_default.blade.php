@@ -155,6 +155,7 @@
                     <img
                         src="{{ $web_settings->get_header ? asset($web_settings->get_header->file_url) : asset('images/logo.png') }}">
                     <div class="company-info">
+                        <strong>{{ $web_settings->website_name ?? config('app.name') }}</strong><br>
                         {{ $web_settings->website_address }}<br>
                         {{ $web_settings->website_phone }}
                     </div>
@@ -242,6 +243,22 @@
                         <td style="text-align: right;padding-bottom: 0;">
                             {{ $web_settings->currency_sign }} {{ $data->shipping_cost }}</td>
                     </tr>
+                    <tr style="border-top: 1px solid black;">
+                        <td colspan="3" style="padding-left: 10px;text-align: right;padding-bottom: 0;">
+                            <strong>Discount (-)</strong>
+                        </td>
+                        <td style="text-align: right;padding-bottom: 0;">
+                            {{ $web_settings->currency_sign }} {{ $data->discount }}</td>
+                    </tr>
+                    @if (!empty($data->coupon_discount) && $data->coupon_discount > 0)
+                        <tr style="border-top: 1px solid black;">
+                            <td colspan="3" style="padding-left: 10px;text-align: right;padding-bottom: 0;">
+                                <strong>Coupon Discount (-)</strong>
+                            </td>
+                            <td style="text-align: right;padding-bottom: 0;">
+                                {{ $web_settings->currency_sign }} {{ $data->coupon_discount }}</td>
+                        </tr>
+                    @endif
                     <tr class="total-row">
                         <td colspan="3" class="text-right">TOTAL</td>
                         <td class="text-right">{{ $web_settings->currency_sign }} {{ $data->total }}</td>

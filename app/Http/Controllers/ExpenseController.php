@@ -41,23 +41,35 @@ class ExpenseController extends Controller
 
     public function update(Request $request)
     {
-        $expense = Expense::find($request->id);
-        $amount = $expense->amount;
-        $expense->update($request->all());
-
-        $account = Account::findOrFail($request->account_id);
-        $account->increment('balance', $amount);
-        $account->decrement('balance', $request->amount);
-
-        $expense->get_transaction()->delete();
-
-        AccountTransaction::create([
-            'expense_id' => $request->id,
-            'account_id' => $request->account_id,
-            'amount' => $request->amount,
-            'transaction_type' => 1,
-            'purpose' => $request->note,
+        $request->validate([
+            'id'         => 'required|exists:expenses,id',
+            'amount'     => 'required|numeric|min:0.01',
+            'account_id' => 'required|exists:accounts,id',
         ]);
+
+        DB::transaction(function () use ($request) {
+            $expense = Expense::findOrFail($request->id);
+
+            // Restore balance to the previous account if a transaction existed
+            $oldTrans = $expense->get_transaction;
+            if ($oldTrans) {
+                Account::where('id', $oldTrans->account_id)->increment('balance', $oldTrans->amount);
+                $oldTrans->delete();
+            }
+
+            // Deduct from the selected account
+            Account::findOrFail($request->account_id)->decrement('balance', $request->amount);
+
+            $expense->update($request->all());
+
+            AccountTransaction::create([
+                'expense_id'       => $expense->id,
+                'account_id'       => $request->account_id,
+                'amount'           => $request->amount,
+                'transaction_type' => 1,
+                'purpose'          => $request->purpose ?? ($request->note ?? 'Expense updated'),
+            ]);
+        });
 
         return back()->with('success', 'Expense updated successfully.');
     }
@@ -73,10 +85,15 @@ class ExpenseController extends Controller
 
     public function delete($id)
     {
-        $expense = Expense::findOrFail($id);
-        $expense->get_transaction->get_account()->increment('balance', $expense->amount);
-        $expense->get_transaction()->delete();
-        $expense->delete();
+        DB::transaction(function () use ($id) {
+            $expense = Expense::findOrFail($id);
+            $trans = $expense->get_transaction;
+            if ($trans) {
+                Account::where('id', $trans->account_id)->increment('balance', $trans->amount);
+                $trans->delete();
+            }
+            $expense->delete();
+        });
 
         return back()->with('success', 'Expense deleted successfully.');
     }

@@ -45,22 +45,28 @@
         /* ===== TOP BAR ===== */
         .top-bar {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             border-bottom: 2px solid #000;
             padding-bottom: 6px;
             margin-bottom: 6px;
         }
 
         .logo {
-            width: 25%;
+            width: 35%;
         }
 
         .logo img {
             max-height: 45px;
         }
 
+        .company-info {
+            font-size: 10px;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
         .invoice-title {
-            width: 50%;
+            width: 35%;
             text-align: center;
         }
 
@@ -71,7 +77,7 @@
         }
 
         .invoice-meta {
-            width: 25%;
+            width: 30%;
             text-align: right;
             font-size: 10px;
         }
@@ -163,6 +169,11 @@
                     <div class="logo">
                         <img src="{{ isset($web_settings->get_header) ? asset($web_settings->get_header->file_url) : asset('images/logo.png') }}"
                             alt="">
+                        <div class="company-info">
+                            <strong>{{ $web_settings->website_name ?? config('app.name') }}</strong><br>
+                            {{ $web_settings->website_address }}<br>
+                            {{ $web_settings->website_phone }}
+                        </div>
                     </div>
 
                     <div class="invoice-title">
@@ -255,6 +266,14 @@
                 <div class="total-bar">
                     Delivery Cost (+) : {{ $web_settings->currency_sign }} {{ $data->shipping_cost }}
                 </div>
+                <div class="total-bar">
+                    Discount (-) : {{ $web_settings->currency_sign }} {{ $data->discount }}
+                </div>
+                @if (!empty($data->coupon_discount) && $data->coupon_discount > 0)
+                    <div class="total-bar">
+                        Coupon Discount (-) : {{ $web_settings->currency_sign }} {{ $data->coupon_discount }}
+                    </div>
+                @endif
                 <div class="total-bar">
                     Total: {{ $web_settings->currency_sign }} {{ $data->total }}
                 </div>

@@ -185,6 +185,16 @@
                         <td style="text-align: right">{{$web_settings->currency_sign}}  {{$order->shipping_cost}}</td>
                     </tr>
                     <tr align="right">
+                        <td align="right" colspan="2" style="text-align: right"><small style="font-size: 7px;">Discount (-) </small></td>
+                        <td style="text-align: right">{{$web_settings->currency_sign}}  {{$order->discount}}</td>
+                    </tr>
+                    @if (!empty($order->coupon_discount) && $order->coupon_discount > 0)
+                        <tr align="right">
+                            <td align="right" colspan="2" style="text-align: right"><small style="font-size: 7px;">Coupon Discount (-) </small></td>
+                            <td style="text-align: right">{{$web_settings->currency_sign}}  {{$order->coupon_discount}}</td>
+                        </tr>
+                    @endif
+                    <tr align="right">
                         <td align="right" colspan="2" style="text-align: right"><small style="font-size: 7px;">Total </small></td>
                         <td width="10%" style="text-wrap: normal; text-align: right;">{{$web_settings->currency_sign}} {{$order->total}}</td>
                     </tr>

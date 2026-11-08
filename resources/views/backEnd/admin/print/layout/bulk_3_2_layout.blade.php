@@ -221,10 +221,18 @@
                             </tr>
                             <tr align="right">
                                 <td align="right" colspan="2" style="text-align: right"><small
-                                        style="font-size: 7px;">Coupon Discount </small></td>
-                                <td style="text-align: right"> {{ number_format($order->coupon_discount) }}
+                                        style="font-size: 7px;">Discount (-) </small></td>
+                                <td style="text-align: right">{{ $order->discount }}
                                     {{ $web_settings->currency_sign }}</td>
                             </tr>
+                            @if (!empty($order->coupon_discount) && $order->coupon_discount > 0)
+                                <tr align="right">
+                                    <td align="right" colspan="2" style="text-align: right"><small
+                                            style="font-size: 7px;">Coupon Discount (-) </small></td>
+                                    <td style="text-align: right">{{ number_format($order->coupon_discount) }}
+                                        {{ $web_settings->currency_sign }}</td>
+                                </tr>
+                            @endif
                             <tr align="right">
                                 <td align="right" colspan="2" style="text-align: right"><small
                                         style="font-size: 7px;">Total </small></td>

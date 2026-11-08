@@ -317,13 +317,26 @@
                                 {{ $web_settings->currency_sign }} {{ $item->shipping_cost }}</td>
                         </tr>
 
-                        {{-- <tr style="border-top: 1px solid black;">
-                    <td colspan="3"
-                        style="padding-left: 10px;text-align: right;padding-right: 10px;padding-bottom: 0;">
-                        <strong>Discount
-                            (-)</strong></td>
-                    <td style="text-align: right;padding-right: 10px;padding-bottom: 0;">{{$web_settings->currency_sign}} {{$item->discount}}</td>
-                </tr> --}}
+                        <tr style="border-top: 1px solid black;">
+                            <td colspan="3"
+                                style="padding-left: 10px;text-align: right;padding-right: 10px;padding-bottom: 0;">
+                                <strong>Discount
+                                    (-)</strong>
+                            </td>
+                            <td style="text-align: right;padding-right: 10px;padding-bottom: 0;">
+                                {{ $web_settings->currency_sign }} {{ $item->discount }}</td>
+                        </tr>
+                        @if (!empty($item->coupon_discount) && $item->coupon_discount > 0)
+                            <tr style="border-top: 1px solid black;">
+                                <td colspan="3"
+                                    style="padding-left: 10px;text-align: right;padding-right: 10px;padding-bottom: 0;">
+                                    <strong>Coupon Discount
+                                        (-)</strong>
+                                </td>
+                                <td style="text-align: right;padding-right: 10px;padding-bottom: 0;">
+                                    {{ $web_settings->currency_sign }} {{ $item->coupon_discount }}</td>
+                            </tr>
+                        @endif
 
                         <tr style="border-top: 1px solid black;">
                             <td colspan="3"

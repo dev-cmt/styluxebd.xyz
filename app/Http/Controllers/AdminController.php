@@ -483,11 +483,7 @@ class AdminController extends Controller
     | FINANCIAL ACCOUNTS
     |--------------------------------------------------------------------------
     */
-        $accountsQuery = Account::query();
-        if ($start && $end) {
-            $accountsQuery->whereBetween('created_at', [$start, $end]);
-        }
-        $data['accounts_balance'] = $accountsQuery->get();
+        $data['accounts_balance'] = Account::where('status', 1)->get();
 
         return view(
             'backEnd.admin.dashboard',

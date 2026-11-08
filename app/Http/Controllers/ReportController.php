@@ -294,9 +294,9 @@ class ReportController extends Controller
             $start = Carbon::parse($request->start_date)->startOfDay()->format('Y-m-d H:i:s');
             $end = Carbon::parse($request->end_date)->endOfDay()->format('Y-m-d H:i:s');
             $tranRange = $trans->whereBetween('created_at', [$start, $end]);
-            $totalPurchaseCost = $tranRange->where('purchase_id', '!=', null)->sum('amount');
-            $totalSell = $tranRange->where('order_id', '!=', null)->sum('amount');
-            $totalExpenseCost = $tranRange->where('expense_id', '!=', null)->sum('amount');
+            $totalPurchaseCost = (clone $tranRange)->whereNotNull('purchase_id')->sum('amount');
+            $totalSell = (clone $tranRange)->whereNotNull('order_id')->sum('amount');
+            $totalExpenseCost = (clone $tranRange)->whereNotNull('expense_id')->sum('amount');
             $daterange = date('d/m/Y', strtotime($request->start_date)) . ' - ' . date('d/m/Y', strtotime($request->end_date));
             if ($request->has('export')) {
                 // dd($totalPurchaseCost, $totalSell, $totalExpenseCost);
@@ -309,9 +309,9 @@ class ReportController extends Controller
             }
         } else {
             $trans = $trans->whereDate('created_at', now()->toDateString());
-            $totalPurchaseCost = $trans->where('purchase_id', '!=', null)->sum('amount');
-            $totalSell = $trans->where('order_id', '!=', null)->sum('amount');
-            $totalExpenseCost = $trans->where('expense_id', '!=', null)->sum('amount');
+            $totalPurchaseCost = (clone $trans)->whereNotNull('purchase_id')->sum('amount');
+            $totalSell = (clone $trans)->whereNotNull('order_id')->sum('amount');
+            $totalExpenseCost = (clone $trans)->whereNotNull('expense_id')->sum('amount');
             if ($request->has('export')) {
                 // dd($totalPurchaseCost,$totalSell ,$totalExpenseCost);
                 $name = 'profit_loss_report';
@@ -401,8 +401,8 @@ class ReportController extends Controller
             }
         } else {
             $data = $data->whereDate('created_at', now()->toDateString());
-            $cashOut = $data->where('transaction_type', 1)->sum('amount');
-            $cashIn = $data->where('transaction_type', 0)->sum('amount');
+            $cashOut = (clone $data)->where('transaction_type', 1)->sum('amount');
+            $cashIn = (clone $data)->where('transaction_type', 0)->sum('amount');
             $daterange = date('d/m/Y', strtotime(now()->toDateString()));
             if ($request->has('export')) {
                 $name = 'transaction_report';

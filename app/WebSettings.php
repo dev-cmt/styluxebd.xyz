@@ -47,6 +47,11 @@ class WebSettings extends Model
     {
         return $this->hasOne(Media::class, 'id', 'website_footer_logo');
     }
+
+    public function getWebsiteNameAttribute($value)
+    {
+        return $value ?: config('app.name');
+    }
     protected static function booted()
     {
         static::saved(function () {
